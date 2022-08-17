@@ -61,6 +61,12 @@ public class EmployeeServiceImpl implements iEmployeeService {
 		return existingEmployee;
 	}
 
+	@Override
+	public void deleteAllEmployees() {
+		employeeRepository.deleteAll();
+		
+	}
+
 	
 		
 		

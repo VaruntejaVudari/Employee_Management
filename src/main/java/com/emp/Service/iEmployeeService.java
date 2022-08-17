@@ -19,5 +19,7 @@ public interface iEmployeeService {
 	
 	Employee updateEmployee(Employee employee, Integer id);
 	
+	public void deleteAllEmployees();
+	
 }
 

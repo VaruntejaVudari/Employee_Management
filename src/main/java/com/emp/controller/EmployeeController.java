@@ -42,12 +42,12 @@ public class EmployeeController {
 	return employeeService.getAllEmployees();	
 	}
 	
-	@GetMapping("/getEmployee/(id)")
+	@GetMapping("/getEmployee/{id}")
 	public Optional<Employee>getEmployee(@PathVariable Integer id){
 	Optional<Employee> employee = employeeService.getEmployee(id);
 	return employee;
 	}
-	@DeleteMapping("/employee/(id)")
+	@DeleteMapping("/employee/{id}")
 	public ResponseEntity<Employee>deleteEmployee(@PathVariable Integer id){
 		System.out.println(id);
 		ResponseEntity<Employee> responseEntity = new ResponseEntity<>(HttpStatus.OK);
@@ -64,7 +64,18 @@ public class EmployeeController {
 	public ResponseEntity<Employee>updateEmployee(@PathVariable("id") Integer id, @RequestBody Employee employee){
 		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
 	}
-	
+	@DeleteMapping("/deleteAll")
+	public ResponseEntity<Employee>deleteAllEmployee(){
+		
+		ResponseEntity<Employee> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+		try {
+			employeeService.deleteAllEmployees();
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity;
+	}
 	}
 	
 
